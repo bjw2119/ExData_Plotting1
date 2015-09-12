@@ -1,0 +1,6 @@
+setwd("exdata-data-household_power_consumption")
+collabs<-read.table("household_power_consumption.txt", nrows = 1, sep=";", colClasses = "character")
+powerdata<- read.table(pipe('grep "^[1-2]/2/2007" "household_power_consumption.txt"'), sep = ";", col.names = collabs[1,], colClasses = c("Date", "POSIXlt", "numeric", "numeric","numeric","numeric","numeric","numeric","numeric"))
+png(filename = "plot1.png", width=480, height=480, units="px")
+hist(powerdata$Global_active_power, main="Global Active Power", xlab="Global Active Power (kilowatts)", col="red")
+dev.off()
