@@ -1,6 +1,6 @@
 #Grab column labels from top row
 collabs<-read.table("household_power_consumption.txt", nrows = 1, sep=";", colClasses = "character")
-#Read in only the data from Feb 1 and Feb 2 2007
+#Read in only the data from Feb 1 and Feb 2 2007 (thanks to Chad Junkermeier for the piping example)
 powerdata<- read.table(pipe('grep "^[1-2]/2/2007" "household_power_consumption.txt"'), sep = ";", col.names = collabs[1,], colClasses = c("character", "character", "numeric", "numeric","numeric","numeric","numeric","numeric","numeric"))
 #Create new column of combined date and time variable
 powerdata$datetime<- dmy_hms(paste(powerdata$Date, powerdata$Time))
